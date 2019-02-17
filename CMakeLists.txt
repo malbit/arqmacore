@@ -12,7 +12,7 @@ if (NOT ARQMA_DIR)
     set(ARQMA_DIR ~/arqma)
 endif()
 
-option(BUILD_XMREGCORE_TESTS "Build tests for the project" ON)
+option(BUILD_XMREGCORE_TESTS "Build tests for the project" OFF)
 
 message(STATUS ARQMA_DIR ": ${ARQMA_DIR}")
 
@@ -33,12 +33,12 @@ set(CMAKE_LIBRARY_PATH ${CMAKE_LIBRARY_PATH} "${ARQMA_BUILD_DIR}"
 
 include(MyUtils)
 
-include(CodeCoverage)
-APPEND_COVERAGE_COMPILER_FLAGS()
-set(COVERAGE_EXCLUDES
-       '${CMAKE_SOURCE_DIR}/ext/*'
-       '${ARQMA_SOURCE_DIR}/*'
-       '${CMAKE_SOURCE_DIR}/tests/*')
+#include(CodeCoverage)
+#APPEND_COVERAGE_COMPILER_FLAGS()
+#set(COVERAGE_EXCLUDES
+#       '${CMAKE_SOURCE_DIR}/ext/*'
+#       '${ARQMA_SOURCE_DIR}/*'
+#       '${CMAKE_SOURCE_DIR}/tests/*')
 
 
 find_package(Arqma)
