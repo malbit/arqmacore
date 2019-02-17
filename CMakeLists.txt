@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.2)
 
 set(PROJECT_NAME
-        arqmacore)
+        xmregcore)
 
 project(${PROJECT_NAME})
 
@@ -12,7 +12,7 @@ if (NOT ARQMA_DIR)
     set(ARQMA_DIR ~/arqma)
 endif()
 
-option(BUILD_ARQMACORE_TESTS "Build tests for the project" ON)
+option(BUILD_XMREGCORE_TESTS "Build tests for the project" ON)
 
 message(STATUS ARQMA_DIR ": ${ARQMA_DIR}")
 
@@ -115,7 +115,7 @@ set(LIBRARIES ${LIBRARIES} ${HIDAPI_LIBRARIES})
 target_link_libraries(${PROJECT_NAME}
     PRIVATE ${LIBRARIES})
 
-if (BUILD_ARQMACORE_TESTS)
+if (BUILD_XMREGCORE_TESTS)
     enable_testing()
     add_subdirectory(ext/googletest)
     add_subdirectory(tests)
