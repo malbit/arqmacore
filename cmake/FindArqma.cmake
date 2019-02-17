@@ -88,7 +88,7 @@ endforeach()
 
 message("FOUND Arqma_LIBRARIES: ${Arqma_LIBRARIES}")
 
-message(STATUS ${ARQMA_SOURCE_DIR}/build)
+message(STATUS ${ARQMA_SOURCE_DIR}/build/Linux/release-v0.2.2)
 
 macro(target_include_arqma_directories target_name)
 
@@ -96,7 +96,7 @@ macro(target_include_arqma_directories target_name)
         PRIVATE
         ${ARQMA_SOURCE_DIR}/src
         ${ARQMA_SOURCE_DIR}/external
-        ${ARQMA_SOURCE_DIR}/build
+        ${ARQMA_SOURCE_DIR}/build/Linux/release-v0.2.2
         ${ARQMA_SOURCE_DIR}/external/easylogging++
         ${ARQMA_SOURCE_DIR}/contrib/epee/include
         ${ARQMA_SOURCE_DIR}/external/db_drivers/liblmdb)

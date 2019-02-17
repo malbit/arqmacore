@@ -20,7 +20,7 @@ set(ARQMA_SOURCE_DIR ${ARQMA_DIR}
         CACHE PATH "Path to the root directory for Arqma")
 
 # set location of Arqma build tree
-set(ARQMA_BUILD_DIR ${ARQMA_SOURCE_DIR}/build/release/
+set(ARQMA_BUILD_DIR ${ARQMA_SOURCE_DIR}/build/Linux/release-v0.2.2
         CACHE PATH "Path to the build directory for Arqma")
 
 set(MY_CMAKE_DIR "${CMAKE_CURRENT_LIST_DIR}/cmake"
@@ -37,7 +37,7 @@ include(CodeCoverage)
 APPEND_COVERAGE_COMPILER_FLAGS()
 set(COVERAGE_EXCLUDES
        '${CMAKE_SOURCE_DIR}/ext/*'
-       '${MONERO_SOURCE_DIR}/*'
+       '${ARQMA_SOURCE_DIR}/*'
        '${CMAKE_SOURCE_DIR}/tests/*')
 
 
