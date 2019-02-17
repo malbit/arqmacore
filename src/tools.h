@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "monero_headers.h"
+#include "arqma_headers.h"
 
 #include "../ext/json.hpp"
 

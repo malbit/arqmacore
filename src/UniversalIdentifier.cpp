@@ -236,7 +236,7 @@ Output::decode_ringct(rct::rctSig const& rv,
         switch (rv.type)
         {
             case rct::RCTTypeSimple:
-            case rct::RCTTypeBulletproof:
+            case rct::RCTTypeSimpleBulletproof:
                 amount = rct::decodeRctSimple(rv,
                                               rct::sk2rct(scalar1),
                                               i,
@@ -244,6 +244,7 @@ Output::decode_ringct(rct::rctSig const& rv,
                                               hw::get_device("default"));
                 break;
             case rct::RCTTypeFull:
+            case rct::RCTTypeFullBulletproof:
                 amount = rct::decodeRct(rv,
                                         rct::sk2rct(scalar1),
                                         i,
@@ -416,7 +417,7 @@ GuessInput::identify(transaction const& tx,
 
     // this will store guessed inputs
     vector<info> local_identified_inputs;
-        
+
     // will keep output public key and amount
     // of mixins in the given key image which
     // are ours.
@@ -487,7 +488,7 @@ GuessInput::identify(transaction const& tx,
         // key image.
 
     } // for (auto i = 0u; i < input_no; ++i)
-        
+
     // to do this, set known_outputs to the known_outputs_map
     known_outputs = &known_outputs_map;
 
@@ -495,7 +496,7 @@ GuessInput::identify(transaction const& tx,
     // method. The method will use known_outputs as
     // its list of outputs
     Input::identify(tx, tx_pub_key, additional_tx_pub_keys);
-    
+
     // copy what was identified using Input::identify
     // into local_identified_inputs
     local_identified_inputs.insert(local_identified_inputs.end(),
@@ -583,7 +584,7 @@ void RealInput::identify(transaction const& tx,
                                         get_address()->address.m_spend_public_key,
                                         key_img_generated))
                 {
-                    throw std::runtime_error("Cant generate " 
+                    throw std::runtime_error("Cant generate "
                             "key image for output: "
                             + pod_to_hex(found_output.pub_key));
                 }
@@ -621,8 +622,8 @@ void RealInput::identify(transaction const& tx,
 
 
 // just a copy from bool
-// device_default::encrypt_payment_id(crypto::hash8 
-// &payment_id, const crypto::public_key &public_key, 
+// device_default::encrypt_payment_id(crypto::hash8
+// &payment_id, const crypto::public_key &public_key,
 // const crypto::secret_key &secret_key)
 template <typename HashT>
 bool
@@ -682,12 +683,12 @@ PaymentID<HashT>::get_payment_id(
     if (find_tx_extra_field_by_type(tx_extra_fields, extra_nonce))
     {
         // first check for encrypted id and then for normal one
-        if(get_encrypted_payment_id_from_tx_extra_nonce(extra_nonce.nonce, 
+        if(get_encrypted_payment_id_from_tx_extra_nonce(extra_nonce.nonce,
                     payment_id8))
         {
             return make_tuple(payment_id, payment_id8);
         }
-        else if (get_payment_id_from_tx_extra_nonce(extra_nonce.nonce, 
+        else if (get_payment_id_from_tx_extra_nonce(extra_nonce.nonce,
                     payment_id))
         {
             return make_tuple(payment_id, payment_id8);
@@ -697,9 +698,9 @@ PaymentID<HashT>::get_payment_id(
     return make_tuple(payment_id, payment_id8);
 }
 
-template tuple<crypto::hash, crypto::hash8> 
+template tuple<crypto::hash, crypto::hash8>
 PaymentID<crypto::hash8>::get_payment_id(transaction const& tx) const;
-template tuple<crypto::hash, crypto::hash8> 
+template tuple<crypto::hash, crypto::hash8>
 PaymentID<crypto::hash>::get_payment_id(transaction const& tx) const;
 
 

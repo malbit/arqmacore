@@ -20,7 +20,7 @@ namespace xmreg
  *
  * The same is done in cryptonode::core.
  */
-MicroCore::MicroCore():      
+MicroCore::MicroCore():
         m_mempool(core_storage),
         core_storage(m_mempool),
         m_device {&hw::get_device("default")}
@@ -110,18 +110,17 @@ MicroCore::get_nettype() const
 void
 MicroCore::get_output_key(uint64_t amount,
                vector<uint64_t> const& absolute_offsets,
-               vector<cryptonote::output_data_t>& outputs) 
-                const 
+               vector<cryptonote::output_data_t>& outputs)
+                const
 {
     core_storage.get_db()
-            .get_output_key(epee::span<const uint64_t>(&amount, 1),
-                            absolute_offsets, outputs);
+            .get_output_key(amount, absolute_offsets, outputs);
 }
 
 
 output_data_t
 MicroCore::get_output_key(uint64_t amount,
-               uint64_t global_amount_index) const 
+               uint64_t global_amount_index) const
 {
     return core_storage.get_db()
                 .get_output_key(amount, global_amount_index);
@@ -200,7 +199,7 @@ void
 MicroCore::get_output_tx_and_index(
         uint64_t amount,
         std::vector<uint64_t> const& offsets,
-        std::vector<tx_out_index>& indices) const 
+        std::vector<tx_out_index>& indices) const
 {
     //                           tx_hash     , index in tx
     // tx_out_index is std::pair<crypto::hash, uint64_t>;
@@ -303,7 +302,7 @@ MicroCore::get_output_histogram(
         COMMAND_RPC_GET_OUTPUT_HISTOGRAM::request const& req,
         COMMAND_RPC_GET_OUTPUT_HISTOGRAM::response& res) const
 {
-    // based on bool core_rpc_server::on_get_output_histogram(const ...        
+    // based on bool core_rpc_server::on_get_output_histogram(const ...
 
     MicroCore::histogram_map histogram;
 

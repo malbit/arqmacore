@@ -18,13 +18,13 @@ main(int ac, const char* av[])
 
     cout << "Program is starting\n";
 
-    network_type nettype = network_type::STAGENET;
+    network_type nettype = network_type::MAINNET;
 
     string blockchain_path = xmreg::get_default_lmdb_folder(nettype);
 
     cout << "Blockchain path: " << blockchain_path << '\n';
 
-    cout << "Monero Version: " << MONERO_VERSION_FULL << endl;
+    cout << "Arqma Version: " << ARQMA_VERSION_FULL << endl;
 
     cout << "Initializaing MicroCore\n";
 

@@ -1,35 +1,35 @@
 cmake_minimum_required(VERSION 3.2)
 
 set(PROJECT_NAME
-        xmregcore)
+        arqmacore)
 
 project(${PROJECT_NAME})
 
 set(CMAKE_CXX_STANDARD 14)
 set(CXX_STANDARD_REQUIRED ON)
 
-if (NOT MONERO_DIR)
-    set(MONERO_DIR ~/monero)
+if (NOT ARQMA_DIR)
+    set(ARQMA_DIR ~/arqma)
 endif()
 
-option(BUILD_XMREGCORE_TESTS "Build tests for the project" ON)
+option(BUILD_ARQMACORE_TESTS "Build tests for the project" ON)
 
-message(STATUS MONERO_DIR ": ${MONERO_DIR}")
+message(STATUS ARQMA_DIR ": ${ARQMA_DIR}")
 
-set(MONERO_SOURCE_DIR ${MONERO_DIR}
-        CACHE PATH "Path to the root directory for Monero")
+set(ARQMA_SOURCE_DIR ${ARQMA_DIR}
+        CACHE PATH "Path to the root directory for Arqma")
 
-# set location of monero build tree
-set(MONERO_BUILD_DIR ${MONERO_SOURCE_DIR}/build/release/
-        CACHE PATH "Path to the build directory for Monero")
+# set location of Arqma build tree
+set(ARQMA_BUILD_DIR ${ARQMA_SOURCE_DIR}/build/release/
+        CACHE PATH "Path to the build directory for Arqma")
 
 set(MY_CMAKE_DIR "${CMAKE_CURRENT_LIST_DIR}/cmake"
         CACHE PATH "The path to the cmake directory of the current project")
 
 list(APPEND CMAKE_MODULE_PATH "${MY_CMAKE_DIR}")
 
-set(CMAKE_LIBRARY_PATH ${CMAKE_LIBRARY_PATH} "${MONERO_BUILD_DIR}"
-        CACHE PATH "Add Monero directory for library searching")
+set(CMAKE_LIBRARY_PATH ${CMAKE_LIBRARY_PATH} "${ARQMA_BUILD_DIR}"
+        CACHE PATH "Add Arqma directory for library searching")
 
 include(MyUtils)
 
@@ -41,7 +41,7 @@ set(COVERAGE_EXCLUDES
        '${CMAKE_SOURCE_DIR}/tests/*')
 
 
-find_package(Monero)
+find_package(Arqma)
 
 # find boost
 find_package(Boost COMPONENTS
@@ -72,19 +72,19 @@ target_include_directories(${PROJECT_NAME}
     PRIVATE ${Boost_INCLUDE_DIRS})
 
 target_include_directories(${PROJECT_NAME}
-    PRIVATE ${MONERO_SOURCE_DIR}/build)
+    PRIVATE ${ARQMA_SOURCE_DIR}/build)
 
-# include monero headers
-target_include_monero_directories(${PROJECT_NAME})
+# include Arqma headers
+target_include_arqma_directories(${PROJECT_NAME})
 
 set(LIBRARIES
-        myxrmcore
-        ${Monero_LIBRARIES}
+        arqmacore
+        ${Arqma_LIBRARIES}
         ${Boost_LIBRARIES}
         sodium
         pthread
         unbound
-        curl        
+        curl
         ssl
         crypto)
 
@@ -115,9 +115,8 @@ set(LIBRARIES ${LIBRARIES} ${HIDAPI_LIBRARIES})
 target_link_libraries(${PROJECT_NAME}
     PRIVATE ${LIBRARIES})
 
-if (BUILD_XMREGCORE_TESTS)
+if (BUILD_ARQMACORE_TESTS)
     enable_testing()
     add_subdirectory(ext/googletest)
     add_subdirectory(tests)
 endif()
-

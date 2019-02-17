@@ -121,7 +121,7 @@ public:
            secret_key const* _viewkey,
            known_outputs_t const* _known_outputs,
            AbstractCore const* _mcore)
-        : BaseIdentifier(_a, _viewkey),          
+        : BaseIdentifier(_a, _viewkey),
           known_outputs {_known_outputs},
           mcore {_mcore}
     {}
@@ -156,7 +156,7 @@ public:
 
 protected:
 
-    secret_key const* viewkey {nullptr};   
+    secret_key const* viewkey {nullptr};
     known_outputs_t const* known_outputs {nullptr};
     AbstractCore const* mcore {nullptr};
     vector<info> identified_inputs;
@@ -233,7 +233,7 @@ public:
                   public_key const& tx_pub_key,
                   vector<public_key> const& additional_tx_pub_keys
                         = vector<public_key>{}) override
-    {   
+    {
         // get payment id. by default we are intrested
         // in short ids from integrated addresses
         payment_id_tuple = get_payment_id(tx);
@@ -250,7 +250,7 @@ public:
         {
             throw std::runtime_error("Cant decrypt pay_id: "
                                      + pod_to_hex(payment_id));
-        }                
+        }
     }
 
     payments_t
@@ -390,4 +390,3 @@ operator<<(std::ostream& os, xmreg::Input::info const& _info)
 }
 
 }
-

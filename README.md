@@ -1,40 +1,34 @@
-# Moneroexamples core repositories
+# Arqma core repositories
 
-This repository includes code that is oftenly used among moneroexamples projects.
+This repository includes code that is oftenly used among Arqma and moneroexamples projects.
 It includes:
 
  - classess for decoding outputs/inputs, payment ids
- - general utility tools (e.g., get default monero blockchain path)
+ - general utility tools (e.g., get default Arqma blockchain path)
  - more to come ...
 
 # C++14
 
 C++14 is required to run this code.
 
-#### Monero download and compilation
 
-Follow instructions in the following link:
-
-https://github.com/moneroexamples/monero-compilation/blob/master/README.md
-
-
-#### Compilation of the xmregcore
+#### Compilation of the arqmacore
 
 ```bash
 
-# go to home folder if still in ~/monero
+# go to home folder if still in ~/arqma
 cd ~
 
-git clone --recurse-submodules  https://github.com/moneroexamples/xmregcore.git
+git clone --recurse-submodules  https://github.com/malbit/arqmacore.git
 
-cd xmregcore
+cd arqmacore
 
 mkdir build && cd build
 
 cmake ..
 
-# altearnatively can use cmake -DMONERO_DIR=/path/to/monero_folder ..
-# if monero is not in ~/monero
+# altearnatively can use cmake -DARQMA_DIR=/path/to/arqma ..
+# if Arqma is not in ~/arqma
 
 make
 

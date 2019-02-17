@@ -28,8 +28,8 @@
 # (c) 2014-2016 cpp-ethereum contributors.
 #------------------------------------------------------------------------------
 
-#set(LIBS        common;blocks;cryptonote_basic;cryptonote_core;
-#		cryptonote_protocol;daemonizer;mnemonics;epee;lmdb;device;
+#set(LIBS        common;cryptonote_basic;cryptonote_core;
+#		             cryptonote_protocol;daemonizer;mnemonics;epee;lmdb;device;
 #                blockchain_db;ringct;wallet;cncrypto;easylogging;version;checkpoints;
 #                ringct_basic)
 
@@ -38,7 +38,6 @@ set(LIBS  cryptonote_core
           cryptonote_protocol
           cryptonote_basic
           daemonizer
-          blocks
           lmdb
           ringct
           ringct_basic
@@ -51,18 +50,18 @@ set(LIBS  cryptonote_core
           version
           cncrypto)
 
-set(Xmr_INCLUDE_DIRS "${CPP_MONERO_DIR}")
+set(Arqma_INCLUDE_DIRS "${CPP_ARQMA_DIR}")
 
 # if the project is a subset of main cpp-ethereum project
 # use same pattern for variables as Boost uses
 
-set(Monero_LIBRARIES "")
+set(Arqma_LIBRARIES "")
 
 foreach (l ${LIBS})
 
 	string(TOUPPER ${l} L)
 
-	find_library(Xmr_${L}_LIBRARY
+	find_library(Arqma_${L}_LIBRARY
 			NAMES ${l}
 			PATHS ${CMAKE_LIBRARY_PATH}
                         PATH_SUFFIXES "/src/${l}"
@@ -75,31 +74,31 @@ foreach (l ${LIBS})
 			NO_DEFAULT_PATH
 			)
 
-	set(Xmr_${L}_LIBRARIES ${Xmr_${L}_LIBRARY})
+	set(Arqma_${L}_LIBRARIES ${Arqma_${L}_LIBRARY})
 
-	message(STATUS FindMonero " Xmr_${L}_LIBRARIES ${Xmr_${L}_LIBRARY}")
+	message(STATUS FindArqma " Arqma_${L}_LIBRARIES ${Arqma_${L}_LIBRARY}")
 
         add_library(${l} STATIC IMPORTED GLOBAL)
-	set_property(TARGET ${l} PROPERTY IMPORTED_LOCATION ${Xmr_${L}_LIBRARIES})
+	set_property(TARGET ${l} PROPERTY IMPORTED_LOCATION ${Arqma_${L}_LIBRARIES})
 
-        set(Monero_LIBRARIES ${Monero_LIBRARIES} ${l} CACHE INTERNAL "Monero LIBRARIES")
+        set(Arqma_LIBRARIES ${Arqma_LIBRARIES} ${l} CACHE INTERNAL "Arqma LIBRARIES")
 
 endforeach()
 
 
-message("FOUND Monero_LIBRARIES: ${Monero_LIBRARIES}")
+message("FOUND Arqma_LIBRARIES: ${Arqma_LIBRARIES}")
 
-message(STATUS ${MONERO_SOURCE_DIR}/build)
+message(STATUS ${ARQMA_SOURCE_DIR}/build)
 
-macro(target_include_monero_directories target_name)
+macro(target_include_arqma_directories target_name)
 
     target_include_directories(${target_name}
         PRIVATE
-        ${MONERO_SOURCE_DIR}/src
-        ${MONERO_SOURCE_DIR}/external
-        ${MONERO_SOURCE_DIR}/build
-        ${MONERO_SOURCE_DIR}/external/easylogging++
-        ${MONERO_SOURCE_DIR}/contrib/epee/include
-        ${MONERO_SOURCE_DIR}/external/db_drivers/liblmdb)
+        ${ARQMA_SOURCE_DIR}/src
+        ${ARQMA_SOURCE_DIR}/external
+        ${ARQMA_SOURCE_DIR}/build
+        ${ARQMA_SOURCE_DIR}/external/easylogging++
+        ${ARQMA_SOURCE_DIR}/contrib/epee/include
+        ${ARQMA_SOURCE_DIR}/external/db_drivers/liblmdb)
 
-endmacro(target_include_monero_directories)
+endmacro(target_include_arqma_directories)

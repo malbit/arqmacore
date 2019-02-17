@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.2)
 
-project(myxrmcore)
+project(arqmacore)
 
 set(SOURCE_FILES
         MicroCore.h
@@ -15,9 +15,9 @@ set(SOURCE_FILES
 # make static library called libmyxrm
 # that we are going to link to
 # in the root CMakeLists.txt file
-add_library(myxrmcore
+add_library(arqmacore
             STATIC
             ${SOURCE_FILES})
 
-# include monero headers
-target_include_monero_directories(myxrmcore)
+# include Arqma headers
+target_include_arqma_directories(arqmacore)

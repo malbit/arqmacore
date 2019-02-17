@@ -5,7 +5,7 @@
 #ifndef XMREG01_MICROCORE_H
 #define XMREG01_MICROCORE_H
 
-#include "monero_headers.h"
+#include "arqma_headers.h"
 
 namespace xmreg
 {
@@ -14,21 +14,21 @@ using namespace crypto;
 using namespace std;
 
 
-class AbstractCore 
+class AbstractCore
 {
     public:
 
     // the three methods below are used in input identification
     // in the UniveralIdentifier. Thus we are going to make
     // the identifier relay on the AbstractCore, instead of the
-    // concrete implementation defined below.     
+    // concrete implementation defined below.
 
-    virtual void 
+    virtual void
     get_output_key(uint64_t amount,
                    vector<uint64_t> const& absolute_offsets,
                    vector<cryptonote::output_data_t>& outputs) const = 0;
 
-    
+
     virtual void
     get_output_tx_and_index(
             uint64_t amount,
@@ -39,8 +39,8 @@ class AbstractCore
     virtual bool
     get_tx(crypto::hash const& tx_hash, transaction& tx) const = 0;
 
-    // below, with time we can other pure virtual methods 
-    // to the AbstractCore, if needed. For now, the above three are 
+    // below, with time we can other pure virtual methods
+    // to the AbstractCore, if needed. For now, the above three are
     // essential
 
 };
@@ -53,7 +53,7 @@ class AbstractCore
  * Just enough to read the blockchain
  * database for use in the example.
  */
-class MicroCore : public AbstractCore 
+class MicroCore : public AbstractCore
 {
 
     string blockchain_path;
@@ -84,7 +84,7 @@ public:
      * Create BlockchainLMDB on the heap.
      * Open database files located in blockchain_path.
      * Initialize m_blockchain_storage with the BlockchainLMDB object.
-     */    
+     */
     virtual bool
     init(const string& _blockchain_path, network_type nt);
 
@@ -103,12 +103,12 @@ public:
     virtual void
     get_output_key(uint64_t amount,
                    vector<uint64_t> const& absolute_offsets,
-                   vector<cryptonote::output_data_t>& outputs) 
+                   vector<cryptonote::output_data_t>& outputs)
                     const override;
 
     virtual output_data_t
     get_output_key(uint64_t amount,
-                   uint64_t global_amount_index) const; 
+                   uint64_t global_amount_index) const;
 
     virtual bool
     get_transactions(
@@ -189,7 +189,7 @@ public:
                        secret_key const& secret_key) const;
 
     virtual bool
-    init_success() const;    
+    init_success() const;
 
     virtual ~MicroCore() = default;
 };

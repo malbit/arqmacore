@@ -1,6 +1,6 @@
 #pragma once
 
-#include "monero_headers.h"
+#include "arqma_headers.h"
 #include "tools.h"
 
 #include <boost/optional.hpp>
@@ -94,7 +94,7 @@ public:
 
 protected:
 
-    network_type nettype {network_type::STAGENET};
+    network_type nettype {network_type::MAINNET};
     address_parse_info addr_info;
     boost::optional<secret_key> viewkey;
     boost::optional<secret_key> spendkey;
@@ -215,4 +215,3 @@ operator<<(std::ostream& os, Account const& _acc)
 }
 
 }
-
