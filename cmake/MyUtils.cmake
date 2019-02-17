@@ -51,8 +51,8 @@ macro(create_git_version)
     )
 
     configure_file(
-            ${CMAKE_SOURCE_DIR}/src/omversion.h.in
-            ${CMAKE_BINARY_DIR}/gen/omversion.h
+            ${CMAKE_SOURCE_DIR}/src/arqversion.h.in
+            ${CMAKE_BINARY_DIR}/gen/arqversion.h
     )
 
     include_directories(${CMAKE_BINARY_DIR}/gen)
