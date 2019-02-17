@@ -78,7 +78,7 @@ target_include_directories(${PROJECT_NAME}
 target_include_arqma_directories(${PROJECT_NAME})
 
 set(LIBRARIES
-        myxmrcore
+        myxrmcore
         ${Arqma_LIBRARIES}
         ${Boost_LIBRARIES}
         sodium
