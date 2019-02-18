@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.2)
 
 set(PROJECT_NAME
-        xmregcore)
+        arqma_core)
 
 project(${PROJECT_NAME})
 
@@ -12,7 +12,7 @@ if (NOT ARQMA_DIR)
     set(ARQMA_DIR ~/arqma)
 endif()
 
-option(BUILD_XMREGCORE_TESTS "Build tests for the project" OFF)
+option(BUILD_ARQMA_CORE_TESTS "Build tests for the project" OFF)
 
 message(STATUS ARQMA_DIR ": ${ARQMA_DIR}")
 
@@ -78,7 +78,7 @@ target_include_directories(${PROJECT_NAME}
 target_include_arqma_directories(${PROJECT_NAME})
 
 set(LIBRARIES
-        myxrmcore
+        arqmacore
         ${Arqma_LIBRARIES}
         ${Boost_LIBRARIES}
         sodium
@@ -115,7 +115,7 @@ set(LIBRARIES ${LIBRARIES} ${HIDAPI_LIBRARIES})
 target_link_libraries(${PROJECT_NAME}
     PRIVATE ${LIBRARIES})
 
-if (BUILD_XMREGCORE_TESTS)
+if (BUILD_ARQMA_CORE_TESTS)
     enable_testing()
     add_subdirectory(ext/googletest)
     add_subdirectory(tests)
