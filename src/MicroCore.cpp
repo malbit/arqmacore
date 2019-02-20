@@ -113,17 +113,14 @@ MicroCore::get_output_key(uint64_t amount,
                vector<cryptonote::output_data_t>& outputs)
                 const
 {
-    core_storage.get_db()
-            .get_output_key(amount, absolute_offsets, outputs);
+    core_storage.get_db().get_output_key(amount, absolute_offsets, outputs);
 }
 
 
 output_data_t
-MicroCore::get_output_key(uint64_t amount,
-               uint64_t global_amount_index) const
+MicroCore::get_output_key(uint64_t amount, uint64_t global_amount_index) const
 {
-    return core_storage.get_db()
-                .get_output_key(amount, global_amount_index);
+    return core_storage.get_db().get_output_key(amount, global_amount_index);
 }
 
 bool
@@ -175,8 +172,7 @@ MicroCore::get_tx_block_height(crypto::hash const& tx_hash) const
 std::vector<uint64_t>
 MicroCore::get_tx_amount_output_indices(uint64_t tx_id) const
 {
-    return core_storage.get_db()
-            .get_tx_amount_output_indices(tx_id).front();
+    return core_storage.get_db().get_tx_amount_output_indices(tx_id);
 }
 
 bool
@@ -184,8 +180,7 @@ MicroCore::get_mempool_txs(
         std::vector<tx_info>& tx_infos,
         std::vector<spent_key_image_info>& key_image_infos) const
 {
-    return m_mempool.get_transactions_and_spent_keys_info(
-                tx_infos, key_image_infos);
+    return m_mempool.get_transactions_and_spent_keys_info(tx_infos, key_image_infos);
 }
 
 
@@ -204,8 +199,7 @@ MicroCore::get_output_tx_and_index(
     //                           tx_hash     , index in tx
     // tx_out_index is std::pair<crypto::hash, uint64_t>;
 
-    core_storage.get_db().get_output_tx_and_index(
-                amount, offsets, indices);
+    core_storage.get_db().get_output_tx_and_index(amount, offsets, indices);
 }
 
 bool

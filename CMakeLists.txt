@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.2)
 
 set(PROJECT_NAME
-        arqma_core)
+        arqma-core)
 
 project(${PROJECT_NAME})
 
@@ -12,7 +12,7 @@ if (NOT ARQMA_DIR)
     set(ARQMA_DIR ~/arqma)
 endif()
 
-option(BUILD_ARQMA_CORE_TESTS "Build tests for the project" OFF)
+option(BUILD_ARQMA-CORE_TESTS "Build tests for the project" OFF)
 
 message(STATUS ARQMA_DIR ": ${ARQMA_DIR}")
 
@@ -72,7 +72,7 @@ target_include_directories(${PROJECT_NAME}
     PRIVATE ${Boost_INCLUDE_DIRS})
 
 target_include_directories(${PROJECT_NAME}
-    PRIVATE ${ARQMA_SOURCE_DIR}/build)
+    PRIVATE ${ARQMA_SOURCE_DIR}/build/Linux/release-v0.2.2)
 
 # include Arqma headers
 target_include_arqma_directories(${PROJECT_NAME})
@@ -115,7 +115,7 @@ set(LIBRARIES ${LIBRARIES} ${HIDAPI_LIBRARIES})
 target_link_libraries(${PROJECT_NAME}
     PRIVATE ${LIBRARIES})
 
-if (BUILD_ARQMA_CORE_TESTS)
+if (BUILD_ARQMA-CORE_TESTS)
     enable_testing()
     add_subdirectory(ext/googletest)
     add_subdirectory(tests)

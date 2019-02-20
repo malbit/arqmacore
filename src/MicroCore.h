@@ -71,8 +71,7 @@ public:
 
     //   <amoumt,
     //    tuple<total_instances, unlocked_instances, recent_instances>
-    using histogram_map = std::map<uint64_t,
-                               std::tuple<uint64_t,  uint64_t, uint64_t>>;
+    using histogram_map = std::map<uint64_t, std::tuple<uint64_t, uint64_t, uint64_t>>;
 
     MicroCore();
 
@@ -104,7 +103,7 @@ public:
     get_output_key(uint64_t amount,
                    vector<uint64_t> const& absolute_offsets,
                    vector<cryptonote::output_data_t>& outputs)
-                    const override;
+                   const override;
 
     virtual output_data_t
     get_output_key(uint64_t amount,
@@ -138,33 +137,29 @@ public:
     get_tx_amount_output_indices(uint64_t tx_id) const;
 
     virtual bool
-    get_mempool_txs(
-            std::vector<tx_info>& tx_infos,
-            std::vector<spent_key_image_info>& key_image_infos) const;
+    get_mempool_txs(std::vector<tx_info>& tx_infos,
+                    std::vector<spent_key_image_info>& key_image_infos) const;
 
     virtual uint64_t
     get_current_blockchain_height() const;
 
     virtual void
-    get_output_tx_and_index(
-            uint64_t amount,
-            std::vector<uint64_t> const& offsets,
-            std::vector<tx_out_index>& indices) const override;
+    get_output_tx_and_index(uint64_t amount,
+                            std::vector<uint64_t> const& offsets,
+                            std::vector<tx_out_index>& indices) const override;
 
     virtual bool
-    get_output_histogram(
-            vector<uint64_t> const& amounts,
-            uint64_t min_count,
-            histogram_map& histogram,
-            bool unlocked = true,
-            uint64_t recent_cutoff = 0) const;
+    get_output_histogram(vector<uint64_t> const& amounts,
+                         uint64_t min_count,
+                         histogram_map& histogram,
+                         bool unlocked = true,
+                         uint64_t recent_cutoff = 0) const;
 
 
     // mimicks core_rpc_server::on_get_output_histogram(..)
     virtual bool
-    get_output_histogram(
-            COMMAND_RPC_GET_OUTPUT_HISTOGRAM::request const& req,
-            COMMAND_RPC_GET_OUTPUT_HISTOGRAM::response& res) const;
+    get_output_histogram(COMMAND_RPC_GET_OUTPUT_HISTOGRAM::request const& req,
+                         COMMAND_RPC_GET_OUTPUT_HISTOGRAM::response& res) const;
 
 
     virtual bool
