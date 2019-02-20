@@ -26,7 +26,7 @@ class AbstractCore
     virtual void
     get_output_key(uint64_t amount,
                    vector<uint64_t> const& absolute_offsets,
-                   vector<cryptonote::output_data_t>& outputs) const = 0;
+                   vector<cryptonote::output_data_t>& outputs) = 0;
 
 
     virtual void
@@ -102,8 +102,7 @@ public:
     virtual void
     get_output_key(uint64_t amount,
                    vector<uint64_t> const& absolute_offsets,
-                   vector<cryptonote::output_data_t>& outputs)
-                   const override;
+                   vector<cryptonote::output_data_t>& outputs) const override;
 
     virtual output_data_t
     get_output_key(uint64_t amount,
@@ -167,7 +166,7 @@ public:
              COMMAND_RPC_GET_OUTPUTS_BIN::response& res) const;
 
     virtual uint64_t
-    get_dynamic_base_fee_estimate(uint64_t grace_blocks) const;
+    get_dynamic_per_kb_fee_estimate(uint64_t grace_blocks) const;
 
     bool
     get_block_complete_entry(block const& b, block_complete_entry& bce);

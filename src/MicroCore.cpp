@@ -110,8 +110,7 @@ MicroCore::get_nettype() const
 void
 MicroCore::get_output_key(uint64_t amount,
                vector<uint64_t> const& absolute_offsets,
-               vector<cryptonote::output_data_t>& outputs)
-                const
+               vector<cryptonote::output_data_t>& outputs) const
 {
     core_storage.get_db().get_output_key(amount, absolute_offsets, outputs);
 }
@@ -228,9 +227,9 @@ MicroCore::get_outs(COMMAND_RPC_GET_OUTPUTS_BIN::request const& req,
 }
 
 uint64_t
-MicroCore::get_dynamic_base_fee_estimate(uint64_t grace_blocks) const
+MicroCore::get_dynamic_per_kb_fee_estimate(uint64_t grace_blocks) const
 {
-    return core_storage.get_dynamic_base_fee_estimate(grace_blocks);
+    return core_storage.get_dynamic_per_kb_fee_estimate(grace_blocks);
 }
 
 bool
