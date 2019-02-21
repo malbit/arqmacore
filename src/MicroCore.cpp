@@ -112,7 +112,7 @@ MicroCore::get_output_key(uint64_t amount,
                vector<uint64_t> const& absolute_offsets,
                vector<cryptonote::output_data_t>& outputs) const
 {
-    core_storage.get_db().get_output_key(amount, absolute_offsets, outputs);
+    core_storage.get_db().get_output_key(epee::span<const uint64_t>(&amount, 1), absolute_offsets, outputs);
 }
 
 
@@ -171,7 +171,7 @@ MicroCore::get_tx_block_height(crypto::hash const& tx_hash) const
 std::vector<uint64_t>
 MicroCore::get_tx_amount_output_indices(uint64_t tx_id) const
 {
-    return core_storage.get_db().get_tx_amount_output_indices(tx_id);
+    return core_storage.get_db().get_tx_amount_output_indices(tx_id).front();
 }
 
 bool
